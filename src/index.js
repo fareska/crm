@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'mobx-react'
+import {ClientsManagerStore as clientsManagerStore} from './store/ClientsManagerStore'
+
+let ClientsManagerStore = new clientsManagerStore()
+
+
+const stores = {
+  ClientsManagerStore,
+}
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider {...stores} >
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
