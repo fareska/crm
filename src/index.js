@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'mobx-react'
 import {ClientsManagerStore as clientsManagerStore} from './store/ClientsManagerStore'
+import {InputStore as inputStore} from './store/InputStore'
+
 
 let ClientsManagerStore = new clientsManagerStore()
+let InputStore = new inputStore()
 
 
 const stores = {
   ClientsManagerStore,
+  InputStore
 }
 
 ReactDOM.render(

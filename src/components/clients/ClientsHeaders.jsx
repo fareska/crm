@@ -10,7 +10,12 @@ class ClientsHeaders extends Component {
             <div id='clientsHeaClientsHeaders'>
                 {headers.map((h, i)=>{
                     return(
-                        <div key={i} className='header' >{h}</div>
+
+                        <span key={i} className='header'  >
+                           <span>
+                               {h}----------
+                               </span> 
+                            </span>
                     )
                 })}
             </div>

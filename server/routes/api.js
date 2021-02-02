@@ -50,6 +50,12 @@ router.get('/clients/:id?', async function (req, res) {
     }
 })
 
+router.get('/countries', async function(req,res){
+    let result = await sequelize.query(`SELECT country FROM country`)
+    res.send(result[0])
+})
+
+
 router.post('/client', async function (req, res) {
     let client = req.body
     let email = await isNew('client', 'email', client.email) === 'newValue' ? client.email : 'user exist'
@@ -67,12 +73,32 @@ router.post('/client', async function (req, res) {
     else { res.send(result[0]) }
 })
 
-router.put('/client', async function (req, res) {
-    const { table, key, val, conditionKey, conditionVal } = req.body
-    let newVal = typeof (val) === 'string' ? `'${val}'` : val
-    let condVal = typeof (conditionVal) === 'string' ? `'${conditionVal}'` : conditionVal
-    let query = (`UPDATE ${table}  SET ${key} = ${newVal}  WHERE ${conditionKey} = ${condVal} `)
+// router.put('/client', async function (req, res) {
+//     const { table, key, val, conditionKey, conditionVal } = req.body
+//     let newVal = typeof (val) === 'string' ? `'${val}'` : val
+//     let condVal = typeof (conditionVal) === 'string' ? `'${conditionVal}'` : conditionVal
+//     let query = (`UPDATE ${table}  SET ${key} = ${newVal}  WHERE ${conditionKey} = ${condVal} `)
 
+//     let result = await sequelize.query(query)
+//     res.send(result[0])
+// })
+
+const isRefKey = key => key.search('_') == -1 ? false : true
+
+router.put('/client', async function (req, res) {
+    const { key, val , id } = req.body
+    let query
+    console.log(isRefKey(key));
+    if(isRefKey(key)){
+        key === 'email_type_id' 
+        ?keyVal= await findByID('email_type', val)  
+        :keyVal = await isNew(key.split("_")[0], key.split("_")[0], val) === 'newValue' ? await addValue(key.split("_")[0], val) : await findByID(key.split("_")[0], val)
+    
+        query = (`UPDATE client  SET ${key} = ${keyVal}  WHERE id = ${id} `)
+    }
+    else  query = (`UPDATE client  SET ${key} = '${val}'  WHERE id = ${id} `) 
+    
+    
     let result = await sequelize.query(query)
     res.send(result[0])
 })

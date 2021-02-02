@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
-import NavBar from './components/NavBar'
-import Clients from './components/Clients'
-import Actions from './components/Actions'
-import Analytics from './components/Analytics'
+import NavBar from './components/NavBar.jsx'
+import Clients from './components/clients/Clients.jsx'
+import Actions from './components/Actions.jsx'
+import Analytics from './components/Analytics.jsx'
 
 class App extends Component {
   constructor() {

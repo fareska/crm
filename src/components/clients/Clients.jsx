@@ -5,15 +5,7 @@ import ClientsHeaders from './ClientsHeaders'
 import ClientsInput from './ClientsInput'
 
 class Clients extends Component {
-    // constructor() {
-    //     super()
-    // }
 
-    // fetchClientsData =  () =>  this.props.ClientsManagerStore.fetchClientsData()
-    // componentDidMount =  () => {
-
-    //     this.fetchClientsData()
-    // }
 
     fetchClientsData = () =>  this.props.ClientsManagerStore.fetchClientsData()
     
@@ -26,8 +18,9 @@ class Clients extends Component {
 
         return (
             <div id='clients'>
-                <ClientsInput key={'ClientsInput'} />
-                <ClientsHeaders key={'ClientsHeaders'} />
+                
+                <ClientsInput  />
+                <ClientsHeaders  />
                 {clients.map((c, i) => <Client key={i} client={c} /> )}
             </div>
         )

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+
 
 class ClientsInput extends Component {
     
@@ -12,4 +14,4 @@ class ClientsInput extends Component {
     }
 }
 
-export default ClientsInput 
+export default observer(ClientsInput) 
